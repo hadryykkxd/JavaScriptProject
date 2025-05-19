@@ -1,59 +1,88 @@
-import Phaser from 'phaser';
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-// Configuração do jogo
-const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 0 }
+const box = 20;
+const canvasSize = 600;
+const total = canvasSize / box;
+
+let direction;
+let snake;
+let food;
+let score;
+
+function resetGame() {
+    snake = [{ x: (total / 2) * box, y: (total / 2) * box }];
+    direction = "RIGHT";
+    score = 0;
+    food = {
+        x: Math.floor(Math.random() * total) * box,
+        y: Math.floor(Math.random() * total) * box,
+    };
+}
+
+resetGame();
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+    else if (e.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+    else if (e.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+    else if (e.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+});
+
+function gameLoop() {
+    ctx.fillStyle = "#537D5D";
+    ctx.fillRect(0, 0, canvasSize, canvasSize);
+
+    for (let i = 0; i < snake.length; i++) {
+        ctx.fillStyle = i === 0 ? "#0f0" : "#0a0";
+        ctx.fillRect(snake[i].x, snake[i].y, box, box);
+    }
+
+    ctx.fillStyle = "#f00";
+    ctx.fillRect(food.x, food.y, box, box);
+
+    let headX = snake[0].x;
+    let headY = snake[0].y;
+
+    if (direction === "LEFT") headX -= box;
+    if (direction === "RIGHT") headX += box;
+    if (direction === "UP") headY -= box;
+    if (direction === "DOWN") headY += box;
+
+    if (
+        headX < 0 || headX >= canvasSize ||
+        headY < 0 || headY >= canvasSize
+    ) {
+        alert("Game Over! Pontos: " + score);
+        resetGame();
+        return;
+    }
+
+    for (let i = 1; i < snake.length; i++) {
+        if (headX === snake[i].x && headY === snake[i].y) {
+            alert("Game Over! Pontos: " + score);
+            resetGame();
+            return;
         }
-    },
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
     }
-};
 
-// Inicia o jogo
-const game = new Phaser.Game(config);
+    let newHead;
+    if (headX === food.x && headY === food.y) {
+        score++;
+        food = {
+            x: Math.floor(Math.random() * total) * box,
+            y: Math.floor(Math.random() * total) * box,
+        };
+        newHead = { x: headX, y: headY };
+    } else {
+        snake.pop();
+        newHead = { x: headX, y: headY };
+    }
 
-// Variáveis globais
-let quadrado;
-
-// Carrega assets (imagens, sons, etc.)
-function preload() {
-    // Por enquanto, não usamos assets
+    snake.unshift(newHead);
+    ctx.fillStyle = "#fff";
+    ctx.font = "18px Arial";
+    ctx.fillText("Pontos: " + score, 10, 20);
 }
 
-// Cria objetos na tela
-function create() {
-    // Cria um quadrado vermelho
-    quadrado = this.add.rectangle(400, 300, 50, 50, 0xff0000);
-    // Habilita física para o quadrado
-    this.physics.add.existing(quadrado);
-    quadrado.body.setCollideWorldBounds(true); // Não sai da tela
-}
-
-// Atualiza o jogo a cada frame
-function update() {
-    // Captura teclas
-    const cursors = this.input.keyboard.createCursorKeys();
-    const velocidade = 200;
-
-    // Movimento
-    quadrado.body.setVelocity(0); // Reseta velocidade
-    if (cursors.left.isDown) {
-        quadrado.body.setVelocityX(-velocidade); // Moves left
-    } else if (cursors.right.isDown) {
-        quadrado.body.setVelocityX(velocidade); // Moves right
-    }
-    if (cursors.up.isDown) {
-        quadrado.body.setVelocityY(-velocidade); // Moves up
-    } else if (cursors.down.isDown) {
-        quadrado.body.setVelocityY(velocidade); // Moves down
-    }
-}
+setInterval(gameLoop, 100);
