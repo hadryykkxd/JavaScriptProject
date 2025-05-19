@@ -17,8 +17,6 @@ Esse é um projeto básico para testar mecânicas do JavaScript e consecutivamen
 
 ## 📸 Imagens do Jogo
 
-![imagem1](imagens/cena1.png) 
----
 ![imagem2](imagens/animacao.gif)
 
 ---
