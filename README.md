@@ -1,4 +1,8 @@
-# 🎮 Projeto Plataforma 2D — Godot Engine
+# 🎮 Projeto SnakeGame
+
+<div align="center">
+  <img src="imagens/animacao.gif" alt="Animação do Jogo" width="400">
+</div>
 
 ## 📝 Descrição do Projeto
 
@@ -21,7 +25,7 @@ Este é um projeto básico criado para testar **mecânicas em JavaScript** e, ao
 ## 📸 Imagens do Jogo
 
 <div align="center">
-  <img src="imagens/animacao.gif" alt="Animação do Jogo" width="400">
+  <img src="imagens/cena1.png" alt="SnakeGame">
 </div>
 
 ---
