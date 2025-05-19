@@ -2,28 +2,32 @@
 
 ## 📝 Descrição do Projeto
 
-Esse é um projeto básico para testar mecânicas do JavaScript e consecutivamente aprender a usar o WebStorm IDEA, com eles eu fiz um jogo clássico SnakeGame 2D sem muitos detalhes, apenas formas e cores com textos simples em uma página Web. Esse jogo não tem objetivo de ser melhorado é apenas para testes e conhecimentos para aprender mais sobre javaScript
+Este é um projeto básico criado para testar **mecânicas em JavaScript** e, ao mesmo tempo, aprender a utilizar a IDE **WebStorm**. O jogo desenvolvido é uma versão simples do clássico **Snake Game 2D**, com foco apenas em formas, cores e textos básicos em uma página web.
+
+⚠️ Este projeto **não tem o objetivo de ser aprimorado** — ele é apenas um experimento para fins de **estudo e aprendizado em JavaScript**.
 
 ---
 
 ## 🕹️ Objetivos
 
-- Aprender JavaScript.
-- Praticar criação de jogos com foco em plataformas 2D.
-- Aprender sistemas de colisões, controles, físicas, mecânicas e sprites.
-- Estudar sobre o WebStorm IDEA e Node.js.
+- Aprender os fundamentos de **JavaScript**.
+- Praticar a criação de jogos 2D com foco em **plataformas simples**.
+- Estudar **colisões, controles, física, mecânicas e sprites**.
+- Utilizar e explorar o ambiente de desenvolvimento **WebStorm IDEA**.
+- Compreender a integração com ferramentas como **Node.js**.
 
 ---
 
 ## 📸 Imagens do Jogo
 
-![imagem2](imagens/animacao.gif)
+<div align="center">
+  <img src="imagens/animacao.gif" alt="Animação do Jogo" width="400">
+</div>
 
 ---
 
 ## 🚧 Status do Projeto
 
-🔧 Completo, apenas para testes e conhecimento sobre JavaScript.
+🔧 **Concluído** — desenvolvido exclusivamente para testes e aprendizado sobre JavaScript.
 
 ---
-
